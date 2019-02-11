@@ -19,39 +19,38 @@ This routine creates a new data set that merges both training and and test data 
 This routine also summarizes the data set per activity and per subject and calculates the average for "mydata2" in a new data set called "averages".
 
 The variables in the data set "mydata2" are:
-
 -activity: each activity is labeled according to the information provided by the file 'activity_labels.txt'
 -subject: subjects are identified according to the information on the files "test/subject_test.txt" and "train/subject_train.txt"
--timebodyaccelerometermeanX: corresponds to the time body accelerometer mean X
--timebodyaccelerometermeanY: corresponds to the time body accelerometer mean Y
--timebodyaccelerometermeanZ: corresponds to the time body accelerometer mean Z
--timebodyaccelerometerstdevX: corresponds to the time body accelerometer stdev X
--timebodyaccelerometerstdevY: corresponds to the time body accelerometer stdev Y
--timebodyaccelerometerstdevZ: corresponds to the time body accelerometer stdev Z
--timegravityaccelerometermeanX: corresponds to the time gravity accelerometer mean X
--timegravityaccelerometermeanY: corresponds to the time gravity accelerometer mean Y
--timegravityaccelerometermeanZ: corresponds to the time gravity accelerometer mean Z
--timegravityaccelerometerstdevX: corresponds to the time gravity accelerometer stdev X
--timegravityaccelerometerstdevY: corresponds to the time gravity accelerometer stdev Y
--timegravityaccelerometerstdevZ: corresponds to the time gravity accelerometer stdev Z
--timebodyaccelerometerjerkmeanX: corresponds to the time body accelerometer jerk mean X
--timebodyaccelerometerjerkmeanY: corresponds to the time body accelerometer jerk mean Y
--timebodyaccelerometerjerkmeanZ: corresponds to the time body accelerometer jerk mean Z
--timebodyaccelerometerjerkstdevX: corresponds to the time body accelerometer jerk stdev X
--timebodyaccelerometerjerkstdevY: corresponds to the time body accelerometer jerk stdev Y
--timebodyaccelerometerjerkstdevZ: corresponds to the time body accelerometer jerk stdev Z
--timebodygiroscopemeanX: corresponds to the time body giroscope mean X
--timebodygiroscopemeanY: corresponds to the time body giroscope mean Y
--timebodygiroscopemeanZ: corresponds to the time body giroscope mean Z
--timebodygiroscopestdevX: corresponds to the time body giroscope stdev X
--timebodygiroscopestdevY: corresponds to the time body giroscope stdev Y
--timebodygiroscopestdevZ: corresponds to the time body giroscope stdev Z
--timebodygiroscopejerkmeanX: corresponds to the time body giroscope jerk mean X
--timebodygiroscopejerkmeanY: corresponds to the time body giroscope jerk mean Y
--timebodygiroscopejerkmeanZ: corresponds to the time body giroscope jerk mean Z
--timebodygiroscopejerkstdevX: corresponds to the time body giroscope jerk stdev X
--timebodygiroscopejerkstdevY: corresponds to the time body giroscope jerk stdev Y
--timebodygiroscopejerkstdevZ: corresponds to the time body giroscope jerk stdev Z
+-timebodyaccelerometermeanx: corresponds to the time body accelerometer meanx
+-timebodyaccelerometermeany: corresponds to the time body accelerometer meany
+-timebodyaccelerometermeanz: corresponds to the time body accelerometer meanz
+-timebodyaccelerometerstdevx: corresponds to the time body accelerometer stdevx
+-timebodyaccelerometerstdevy: corresponds to the time body accelerometer stdevy
+-timebodyaccelerometerstdevz: corresponds to the time body accelerometer stdevz
+-timegravityaccelerometermeanx: corresponds to the time gravity accelerometer meanx
+-timegravityaccelerometermeany: corresponds to the time gravity accelerometer meany
+-timegravityaccelerometermeanz: corresponds to the time gravity accelerometer meanz
+-timegravityaccelerometerstdevx: corresponds to the time gravity accelerometer stdevx
+-timegravityaccelerometerstdevy: corresponds to the time gravity accelerometer stdevy
+-timegravityaccelerometerstdevz: corresponds to the time gravity accelerometer stdevz
+-timebodyaccelerometerjerkmeanx: corresponds to the time body accelerometer jerk meanx
+-timebodyaccelerometerjerkmeany: corresponds to the time body accelerometer jerk meany
+-timebodyaccelerometerjerkmeanz: corresponds to the time body accelerometer jerk meanz
+-timebodyaccelerometerjerkstdevx: corresponds to the time body accelerometer jerk stdevx
+-timebodyaccelerometerjerkstdevy: corresponds to the time body accelerometer jerk stdevy
+-timebodyaccelerometerjerkstdevz: corresponds to the time body accelerometer jerk stdevz
+-timebodygiroscopemeanx: corresponds to the time body giroscope meanx
+-timebodygiroscopemeany: corresponds to the time body giroscope meany
+-timebodygiroscopemeanz: corresponds to the time body giroscope meanz
+-timebodygiroscopestdevx: corresponds to the time body giroscope stdevx
+-timebodygiroscopestdevy: corresponds to the time body giroscope stdevy
+-timebodygiroscopestdevz: corresponds to the time body giroscope stdevz
+-timebodygiroscopejerkmeanx: corresponds to the time body giroscope jerk meanx
+-timebodygiroscopejerkmeany: corresponds to the time body giroscope jerk meany
+-timebodygiroscopejerkmeanz: corresponds to the time body giroscope jerk meanz
+-timebodygiroscopejerkstdevx: corresponds to the time body giroscope jerk stdevx
+-timebodygiroscopejerkstdevy: corresponds to the time body giroscope jerk stdevy
+-timebodygiroscopejerkstdevz: corresponds to the time body giroscope jerk stdevz
 -timebodyaccelerometermagmean: corresponds to the time body accelerometer mag mean
 -timebodyaccelerometermagstdev: corresponds to the time body accelerometer mag stdev
 -timegravityaccelerometermagmean: corresponds to the time gravity accelerometer mag mean
@@ -62,24 +61,24 @@ The variables in the data set "mydata2" are:
 -timebodygiroscopemagstdev: corresponds to the time body giroscope mag stdev
 -timebodygiroscopejerkmagmean: corresponds to the time body giroscope jerk mag mean
 -timebodygiroscopejerkmagstdev: corresponds to the time body giroscope jerk mag stdev
--frequencybodyaccelerometermeanX: corresponds to the frequency body accelerometer mean X
--frequencybodyaccelerometermeanY: corresponds to the frequency body accelerometer mean Y
--frequencybodyaccelerometermeanZ: corresponds to the frequency body accelerometer mean Z
--frequencybodyaccelerometerstdevX: corresponds to the frequency body accelerometer stdev X
--frequencybodyaccelerometerstdevY: corresponds to the frequency body accelerometer stdev Y
--frequencybodyaccelerometerstdevZ: corresponds to the frequency body accelerometer stdev Z
--frequencybodyaccelerometerjerkmeanX: corresponds to the frequency body accelerometer jerk mean X
--frequencybodyaccelerometerjerkmeanY: corresponds to the frequency body accelerometer jerk mean Y
--frequencybodyaccelerometerjerkmeanZ: corresponds to the frequency body accelerometer jerk mean Z
--frequencybodyaccelerometerjerkstdevX: corresponds to the frequency body accelerometer jerk stdev X
--frequencybodyaccelerometerjerkstdevY: corresponds to the frequency body accelerometer jerk stdev Y
--frequencybodyaccelerometerjerkstdevZ: corresponds to the frequency body accelerometer jerk stdev Z
--frequencybodygiroscopemeanX: corresponds to the frequency body giroscope mean X
--frequencybodygiroscopemeanY: corresponds to the frequency body giroscope mean Y
--frequencybodygiroscopemeanZ: corresponds to the frequency body giroscope mean Z
--frequencybodygiroscopestdevX: corresponds to the frequency body giroscope stdev X
--frequencybodygiroscopestdevY: corresponds to the frequency body giroscope stdev Y
--frequencybodygiroscopestdevZ: corresponds to the frequency body giroscope stdev Z
+-frequencybodyaccelerometermeanx: corresponds to the frequency body accelerometer meanx
+-frequencybodyaccelerometermeany: corresponds to the frequency body accelerometer meany
+-frequencybodyaccelerometermeanz: corresponds to the frequency body accelerometer meanz
+-frequencybodyaccelerometerstdevx: corresponds to the frequency body accelerometer stdevx
+-frequencybodyaccelerometerstdevy: corresponds to the frequency body accelerometer stdevy
+-frequencybodyaccelerometerstdevz: corresponds to the frequency body accelerometer stdevz
+-frequencybodyaccelerometerjerkmeanx: corresponds to the frequency body accelerometer jerk meanx
+-frequencybodyaccelerometerjerkmeany: corresponds to the frequency body accelerometer jerk meany
+-frequencybodyaccelerometerjerkmeanz: corresponds to the frequency body accelerometer jerk meanz
+-frequencybodyaccelerometerjerkstdevx: corresponds to the frequency body accelerometer jerk stdevx
+-frequencybodyaccelerometerjerkstdevy: corresponds to the frequency body accelerometer jerk stdevy
+-frequencybodyaccelerometerjerkstdevz: corresponds to the frequency body accelerometer jerk stdevz
+-frequencybodygiroscopemeanx: corresponds to the frequency body giroscope meanx
+-frequencybodygiroscopemeany: corresponds to the frequency body giroscope meany
+-frequencybodygiroscopemeanz: corresponds to the frequency body giroscope meanz
+-frequencybodygiroscopestdevx: corresponds to the frequency body giroscope stdevx
+-frequencybodygiroscopestdevy: corresponds to the frequency body giroscope stdevy
+-frequencybodygiroscopestdevz: corresponds to the frequency body giroscope stdevz
 -frequencybodyaccelerometermagmean: corresponds to the frequency body accelerometer mag mean
 -frequencybodyaccelerometermagstdev: corresponds to the frequency body accelerometer mag stdev
 -frequencybodyaccelerometerjerkmagmean: corresponds to the frequency body accelerometer jerk mag mean
@@ -88,13 +87,17 @@ The variables in the data set "mydata2" are:
 -frequencybodygiroscopemagstdev: corresponds to the frequency body giroscope mag stdev
 -frequencybodygiroscopejerkmagmean: corresponds to the frequency body giroscope jerk mag mean
 -frequencybodygiroscopejerkmagstdev: corresponds to the frequency body giroscope jerk mag stdev
+-angletimebodyaccelerometermeangravity: corresponds to the angle time body accelerometer meangravity
+-angletimebodyaccelerometerjerkmeangravitymean: corresponds to the angle time body accelerometer jerk mean gravity mean
+-angletimebodygiroscopemeangravitymean: corresponds to the angle time body giroscope mean gravity mean
+-angletimebodygiroscopejerkmeangravitymean: corresponds to the angle time body giroscope jerk mean gravity mean
+-anglexgravitymean: corresponds to the angle x gravity mean
+-angleygravitymean: corresponds to the angle y gravity mean
+-anglezgravitymean: corresponds to the angle z gravity mean
+
 
 
 The variables in the data set "averages" are:
-
 -activity: each activity is labeled according to the information provided by the file 'activity_labels.txt'
 -subject: subjects are identified according to the information on the files "test/subject_test.txt" and "train/subject_train.txt"
 -all measurements in "mydata2" precides by "mean_", which indicates the average per activity per subject for the measurement
-
-
-
