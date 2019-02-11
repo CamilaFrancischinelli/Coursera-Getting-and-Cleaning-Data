@@ -25,10 +25,9 @@ names(subject_train) <- "subject"
 
 
 ## Combining all data frames and identify activities
-x_train <- cbind(x_train, y_train)           
+x_train <- cbind(x_train, y_train, subject_train)           
 x_train <- merge(labels, x_train, by.x = "V1", by.y = "activity")
-x_train <- x_train[2:563]
-x_train <- cbind(x_train, subject_train)
+x_train <- x_train[2:564]
 x_train$type = "train"
 
 
@@ -42,10 +41,9 @@ names(subject_test) <- "subject"
 
 
 ## Combining all data frames and identify activities
-x_test <- cbind(x_test, y_test)           
+x_test <- cbind(x_test, y_test, subject_test)           
 x_test <- merge(labels, x_test, by.x = "V1", by.y = "activity")
-x_test <- x_test[2:563]
-x_test <- cbind(x_test, subject_test)
+x_test <- x_test[2:564]
 x_test$type = "test"
 
 
@@ -58,7 +56,7 @@ mydata <- mydata[,c(1,563,564,2:562)]
 
 
 ## Subsetting columns with mean, standard deviation, activity and subject
-mydata2 <- mydata[, grepl("mean|std|activity|subject", names(mydata))]
+mydata2 <- mydata[, grepl("[Mm]ean|std|activity|subject", names(mydata))]
 mydata2 <- mydata2[, !grepl("meanFreq", names(mydata2))]
 
 
@@ -68,15 +66,24 @@ headers <- sub("Acc"," accelerometer",headers)
 headers <- sub("Gyro"," giroscope",headers)
 headers <- sub("Mag"," mag",headers)
 headers <- sub("Jerk"," jerk",headers)
+headers <- sub("gravityMean"," gravity mean",headers)
+headers <- sub("jerkMean"," jerk mean",headers)
+headers <- sub("giroscopeMean"," giroscope mean",headers)
+headers <- sub("BodyBody","Body",headers)
 headers <- sub("^t","time ",headers)
 headers <- sub("^f","frequency ",headers)
+headers <- sub("tBody","time body",headers)
 headers <- sub("-mean"," mean",headers)
+headers <- sub("Mean"," mean",headers)
 headers <- sub("-std"," stdev",headers)
 headers <- sub("Body","body",headers)
-headers <- sub("bodyBody","body",headers)
 headers <- sub("Gravity","gravity",headers)
-headers <- sub("-"," ",headers)
+headers <- sub("X","x",headers)
+headers <- sub("Y","y",headers)
+headers <- sub("Z","z",headers)
+headers <- sub("-","",headers)
 headers <- gsub("[()]","",headers)
+headers <- gsub(",","",headers)
 headers <- gsub(" ","",headers)
 names(mydata2) <- headers
 
@@ -84,36 +91,36 @@ names(mydata2) <- headers
 ## Calculating the average per activity per subject
 averages <- mydata2 %>%
   group_by(activity, subject) %>%
-  summarize(mean_timebodyaccelerometermeanX = mean(timebodyaccelerometermeanX),
-            mean_timebodyaccelerometermeanY = mean(timebodyaccelerometermeanY),
-            mean_timebodyaccelerometermeanZ = mean(timebodyaccelerometermeanZ),
-            mean_timebodyaccelerometerstdevX = mean(timebodyaccelerometerstdevX),
-            mean_timebodyaccelerometerstdevY = mean(timebodyaccelerometerstdevY),
-            mean_timebodyaccelerometerstdevZ = mean(timebodyaccelerometerstdevZ),
-            mean_timegravityaccelerometermeanX = mean(timegravityaccelerometermeanX),
-            mean_timegravityaccelerometermeanY = mean(timegravityaccelerometermeanY),
-            mean_timegravityaccelerometermeanZ = mean(timegravityaccelerometermeanZ),
-            mean_timegravityaccelerometerstdevX = mean(timegravityaccelerometerstdevX),
-            mean_timegravityaccelerometerstdevY = mean(timegravityaccelerometerstdevY),
-            mean_timegravityaccelerometerstdevZ = mean(timegravityaccelerometerstdevZ),
-            mean_timebodyaccelerometerjerkmeanX = mean(timebodyaccelerometerjerkmeanX),
-            mean_timebodyaccelerometerjerkmeanY = mean(timebodyaccelerometerjerkmeanY),
-            mean_timebodyaccelerometerjerkmeanZ = mean(timebodyaccelerometerjerkmeanZ),
-            mean_timebodyaccelerometerjerkstdevX = mean(timebodyaccelerometerjerkstdevX),
-            mean_timebodyaccelerometerjerkstdevY = mean(timebodyaccelerometerjerkstdevY),
-            mean_timebodyaccelerometerjerkstdevZ = mean(timebodyaccelerometerjerkstdevZ),
-            mean_timebodygiroscopemeanX = mean(timebodygiroscopemeanX),
-            mean_timebodygiroscopemeanY = mean(timebodygiroscopemeanY),
-            mean_timebodygiroscopemeanZ = mean(timebodygiroscopemeanZ),
-            mean_timebodygiroscopestdevX = mean(timebodygiroscopestdevX),
-            mean_timebodygiroscopestdevY = mean(timebodygiroscopestdevY),
-            mean_timebodygiroscopestdevZ = mean(timebodygiroscopestdevZ),
-            mean_timebodygiroscopejerkmeanX = mean(timebodygiroscopejerkmeanX),
-            mean_timebodygiroscopejerkmeanY = mean(timebodygiroscopejerkmeanY),
-            mean_timebodygiroscopejerkmeanZ = mean(timebodygiroscopejerkmeanZ),
-            mean_timebodygiroscopejerkstdevX = mean(timebodygiroscopejerkstdevX),
-            mean_timebodygiroscopejerkstdevY = mean(timebodygiroscopejerkstdevY),
-            mean_timebodygiroscopejerkstdevZ = mean(timebodygiroscopejerkstdevZ),
+  summarize(mean_timebodyaccelerometermeanx = mean(timebodyaccelerometermeanx),
+            mean_timebodyaccelerometermeany = mean(timebodyaccelerometermeany),
+            mean_timebodyaccelerometermeanz = mean(timebodyaccelerometermeanz),
+            mean_timebodyaccelerometerstdevx = mean(timebodyaccelerometerstdevx),
+            mean_timebodyaccelerometerstdevy = mean(timebodyaccelerometerstdevy),
+            mean_timebodyaccelerometerstdevz = mean(timebodyaccelerometerstdevz),
+            mean_timegravityaccelerometermeanx = mean(timegravityaccelerometermeanx),
+            mean_timegravityaccelerometermeany = mean(timegravityaccelerometermeany),
+            mean_timegravityaccelerometermeanz = mean(timegravityaccelerometermeanz),
+            mean_timegravityaccelerometerstdevx = mean(timegravityaccelerometerstdevx),
+            mean_timegravityaccelerometerstdevy = mean(timegravityaccelerometerstdevy),
+            mean_timegravityaccelerometerstdevz = mean(timegravityaccelerometerstdevz),
+            mean_timebodyaccelerometerjerkmeanx = mean(timebodyaccelerometerjerkmeanx),
+            mean_timebodyaccelerometerjerkmeany = mean(timebodyaccelerometerjerkmeany),
+            mean_timebodyaccelerometerjerkmeanz = mean(timebodyaccelerometerjerkmeanz),
+            mean_timebodyaccelerometerjerkstdevx = mean(timebodyaccelerometerjerkstdevx),
+            mean_timebodyaccelerometerjerkstdevy = mean(timebodyaccelerometerjerkstdevy),
+            mean_timebodyaccelerometerjerkstdevz = mean(timebodyaccelerometerjerkstdevz),
+            mean_timebodygiroscopemeanx = mean(timebodygiroscopemeanx),
+            mean_timebodygiroscopemeany = mean(timebodygiroscopemeany),
+            mean_timebodygiroscopemeanz = mean(timebodygiroscopemeanz),
+            mean_timebodygiroscopestdevx = mean(timebodygiroscopestdevx),
+            mean_timebodygiroscopestdevy = mean(timebodygiroscopestdevy),
+            mean_timebodygiroscopestdevz = mean(timebodygiroscopestdevz),
+            mean_timebodygiroscopejerkmeanx = mean(timebodygiroscopejerkmeanx),
+            mean_timebodygiroscopejerkmeany = mean(timebodygiroscopejerkmeany),
+            mean_timebodygiroscopejerkmeanz = mean(timebodygiroscopejerkmeanz),
+            mean_timebodygiroscopejerkstdevx = mean(timebodygiroscopejerkstdevx),
+            mean_timebodygiroscopejerkstdevy = mean(timebodygiroscopejerkstdevy),
+            mean_timebodygiroscopejerkstdevz = mean(timebodygiroscopejerkstdevz),
             mean_timebodyaccelerometermagmean = mean(timebodyaccelerometermagmean),
             mean_timebodyaccelerometermagstdev = mean(timebodyaccelerometermagstdev),
             mean_timegravityaccelerometermagmean = mean(timegravityaccelerometermagmean),
@@ -124,24 +131,24 @@ averages <- mydata2 %>%
             mean_timebodygiroscopemagstdev = mean(timebodygiroscopemagstdev),
             mean_timebodygiroscopejerkmagmean = mean(timebodygiroscopejerkmagmean),
             mean_timebodygiroscopejerkmagstdev = mean(timebodygiroscopejerkmagstdev),
-            mean_frequencybodyaccelerometermeanX = mean(frequencybodyaccelerometermeanX),
-            mean_frequencybodyaccelerometermeanY = mean(frequencybodyaccelerometermeanY),
-            mean_frequencybodyaccelerometermeanZ = mean(frequencybodyaccelerometermeanZ),
-            mean_frequencybodyaccelerometerstdevX = mean(frequencybodyaccelerometerstdevX),
-            mean_frequencybodyaccelerometerstdevY = mean(frequencybodyaccelerometerstdevY),
-            mean_frequencybodyaccelerometerstdevZ = mean(frequencybodyaccelerometerstdevZ),
-            mean_frequencybodyaccelerometerjerkmeanX = mean(frequencybodyaccelerometerjerkmeanX),
-            mean_frequencybodyaccelerometerjerkmeanY = mean(frequencybodyaccelerometerjerkmeanY),
-            mean_frequencybodyaccelerometerjerkmeanZ = mean(frequencybodyaccelerometerjerkmeanZ),
-            mean_frequencybodyaccelerometerjerkstdevX = mean(frequencybodyaccelerometerjerkstdevX),
-            mean_frequencybodyaccelerometerjerkstdevY = mean(frequencybodyaccelerometerjerkstdevY),
-            mean_frequencybodyaccelerometerjerkstdevZ = mean(frequencybodyaccelerometerjerkstdevZ),
-            mean_frequencybodygiroscopemeanX = mean(frequencybodygiroscopemeanX),
-            mean_frequencybodygiroscopemeanY = mean(frequencybodygiroscopemeanY),
-            mean_frequencybodygiroscopemeanZ = mean(frequencybodygiroscopemeanZ),
-            mean_frequencybodygiroscopestdevX = mean(frequencybodygiroscopestdevX),
-            mean_frequencybodygiroscopestdevY = mean(frequencybodygiroscopestdevY),
-            mean_frequencybodygiroscopestdevZ = mean(frequencybodygiroscopestdevZ),
+            mean_frequencybodyaccelerometermeanx = mean(frequencybodyaccelerometermeanx),
+            mean_frequencybodyaccelerometermeany = mean(frequencybodyaccelerometermeany),
+            mean_frequencybodyaccelerometermeanz = mean(frequencybodyaccelerometermeanz),
+            mean_frequencybodyaccelerometerstdevx = mean(frequencybodyaccelerometerstdevx),
+            mean_frequencybodyaccelerometerstdevy = mean(frequencybodyaccelerometerstdevy),
+            mean_frequencybodyaccelerometerstdevz = mean(frequencybodyaccelerometerstdevz),
+            mean_frequencybodyaccelerometerjerkmeanx = mean(frequencybodyaccelerometerjerkmeanx),
+            mean_frequencybodyaccelerometerjerkmeany = mean(frequencybodyaccelerometerjerkmeany),
+            mean_frequencybodyaccelerometerjerkmeanz = mean(frequencybodyaccelerometerjerkmeanz),
+            mean_frequencybodyaccelerometerjerkstdevx = mean(frequencybodyaccelerometerjerkstdevx),
+            mean_frequencybodyaccelerometerjerkstdevy = mean(frequencybodyaccelerometerjerkstdevy),
+            mean_frequencybodyaccelerometerjerkstdevz = mean(frequencybodyaccelerometerjerkstdevz),
+            mean_frequencybodygiroscopemeanx = mean(frequencybodygiroscopemeanx),
+            mean_frequencybodygiroscopemeany = mean(frequencybodygiroscopemeany),
+            mean_frequencybodygiroscopemeanz = mean(frequencybodygiroscopemeanz),
+            mean_frequencybodygiroscopestdevx = mean(frequencybodygiroscopestdevx),
+            mean_frequencybodygiroscopestdevy = mean(frequencybodygiroscopestdevy),
+            mean_frequencybodygiroscopestdevz = mean(frequencybodygiroscopestdevz),
             mean_frequencybodyaccelerometermagmean = mean(frequencybodyaccelerometermagmean),
             mean_frequencybodyaccelerometermagstdev = mean(frequencybodyaccelerometermagstdev),
             mean_frequencybodyaccelerometerjerkmagmean = mean(frequencybodyaccelerometerjerkmagmean),
@@ -149,8 +156,17 @@ averages <- mydata2 %>%
             mean_frequencybodygiroscopemagmean = mean(frequencybodygiroscopemagmean),
             mean_frequencybodygiroscopemagstdev = mean(frequencybodygiroscopemagstdev),
             mean_frequencybodygiroscopejerkmagmean = mean(frequencybodygiroscopejerkmagmean),
-            mean_frequencybodygiroscopejerkmagstdev = mean(frequencybodygiroscopejerkmagstdev)) %>%
+            mean_frequencybodygiroscopejerkmagstdev = mean(frequencybodygiroscopejerkmagstdev),
+            mean_angletimebodyaccelerometermeangravity = mean(angletimebodyaccelerometermeangravity),
+            mean_angletimebodyaccelerometerjerkmeangravitymean = mean(angletimebodyaccelerometerjerkmeangravitymean),
+            mean_angletimebodygiroscopemeangravitymean = mean(angletimebodygiroscopemeangravitymean),
+            mean_angletimebodygiroscopejerkmeangravitymean = mean(angletimebodygiroscopejerkmeangravitymean),
+            mean_anglexgravitymean = mean(anglexgravitymean),
+            mean_angleygravitymean = mean(angleygravitymean),
+            mean_anglezgravitymean = mean(anglezgravitymean)) %>%
   arrange(activity, subject)
 
 averages <- unique(averages)
 View(averages)
+
+write.table(averages, file = "my_analysis.txt", row.names = FALSE)
